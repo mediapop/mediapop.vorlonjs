@@ -1,0 +1,19 @@
+server {
+  listen {{vorlon_port}};
+  server_name {{host_name}};
+
+  client_max_body_size 0;
+
+  location / {
+    include proxy_params;
+    proxy_pass http://localhost:1337;
+  }
+  {% if deploy_environment != "local" %}
+  location /static/ {
+    expires max;
+    add_header Set-Cookie "";
+    alias {{ project_home }}/{{ deploy_environment }}/src/{{ project_name }}/assets/;
+    access_log off;
+  }
+  {% endif %}
+}
