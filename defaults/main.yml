@@ -1,0 +1,6 @@
+---
+vorlon_server: localhost
+#ossec_email_from: ossecm@localhost
+#ossec_syscheck_frequency: 72000
+
+
